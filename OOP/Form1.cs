@@ -12,6 +12,8 @@ namespace OOP
         Line line1;
         Line line2;
         Box box1;
+        Circle circle1;
+
 
         public Form1()
         {
@@ -28,6 +30,7 @@ namespace OOP
             line1 = new Line(100, 100, 200, 10);
             line2 = new Line(200, 10, 300, 100);
             box1 = new Box(100, 100, 300, 300);
+            circle1= new Circle(200,200,100);
 
         }
 
@@ -36,6 +39,7 @@ namespace OOP
             Draw(box1);
             Draw(line1);
             Draw(line2);
+            Draw(circle1);
             picture.Image = bmp;
         }
 
@@ -47,6 +51,11 @@ namespace OOP
         private void Draw(Box box)
         {
             graph.DrawRectangle(pen, box.x1, box.y1, box.width, box.height);
+        }
+
+        private void Draw(Circle circle)
+        {
+            graph.DrawEllipse(pen, circle.x1, circle.y1, circle.width, circle.height);
         }
     }
 }
