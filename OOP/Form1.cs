@@ -5,11 +5,13 @@ namespace OOP
 {
     public partial class Form1 : Form
     {
-        Line line1;
-        Line line2;
         Bitmap bmp;
         Graphics graph;
         Pen pen;
+
+        Line line1;
+        Line line2;
+        Box box1;
 
         public Form1()
         {
@@ -22,14 +24,16 @@ namespace OOP
         {
             bmp = new Bitmap(picture.Width, picture.Height);
             graph = Graphics.FromImage(bmp);
-            pen = new Pen(Color.Blue);
+            pen = new Pen(Color.Green);
             line1 = new Line(100, 100, 200, 10);
             line2 = new Line(200, 10, 300, 100);
+            box1 = new Box(100, 100, 300, 300);
+
         }
 
         private void Draw()
         {
-            graph.DrawRectangle(pen, 100, 100, 200, 200);
+            Draw(box1);
             Draw(line1);
             Draw(line2);
             picture.Image = bmp;
@@ -38,6 +42,11 @@ namespace OOP
         private void Draw(Line line)
         {
             graph.DrawLine(pen, line.x1, line.y1, line.x2, line.y2);
+        }
+
+        private void Draw(Box box)
+        {
+            graph.DrawRectangle(pen, box.x1, box.y1, box.width, box.height);
         }
     }
 }
