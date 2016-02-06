@@ -3,6 +3,18 @@ using System.Windows.Forms;
 
 namespace OOP
 {
+    public struct Pixel
+    {
+        public int x;
+        public int y;
+
+        public Pixel(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
     public partial class Form1 : Form
     {
         Bitmap bmp;
@@ -14,6 +26,7 @@ namespace OOP
         Box box1;
         Circle circle1;
 
+         Pixel A,B,C,D,E,O;
 
         public Form1()
         {
@@ -27,10 +40,18 @@ namespace OOP
             bmp = new Bitmap(picture.Width, picture.Height);
             graph = Graphics.FromImage(bmp);
             pen = new Pen(Color.Green);
-            line1 = new Line(100, 100, 200, 10);
-            line2 = new Line(200, 10, 300, 100);
-            box1 = new Box(100, 100, 300, 300);
-            circle1= new Circle(200,200,100);
+
+            A= new Pixel(100,300);
+            B= new Pixel(300,300);
+            C= new Pixel(100,100);
+            D = new Pixel(300, 100);
+            E = new Pixel(200, 10);
+            O= new Pixel(200,200);
+
+            line1 = new Line(C,E);
+            line2 = new Line(E,D);
+            box1 = new Box(C,B);
+            circle1= new Circle(O,100);
 
         }
 

@@ -17,5 +17,15 @@
             y1 = y - radius;
             width = height = radius * 2;
         }
+
+        public Circle(Pixel center, int radius)
+        {
+            this.x = center.x;
+            this.y = center.y;
+            this.radius = radius;
+            x1 = x - radius;
+            y1 = y - radius;
+            width = height = radius * 2;
+        }
     }
 }

@@ -15,5 +15,15 @@
             width = x2 - x1;
             height = y2 - y1;
         }
+
+        public Box(Pixel lu, Pixel rd)
+        {
+            x1 = lu.x;
+            y1 = lu.y;
+            x2 = rd.x;
+            y2 = rd.y;
+            width = x2 - x1;
+            height = y2 - y1;
+        }
     }
 }
