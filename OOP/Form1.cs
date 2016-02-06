@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOP
@@ -13,6 +14,13 @@ namespace OOP
             this.x = x;
             this.y = y;
         }
+
+        public int distance(Pixel pixel)
+        {
+            return Convert.ToInt32(Math.Sqrt(
+                (x - pixel.x) * (x - pixel.x) +
+                (y - pixel.y) * (y - pixel.y)));
+        }
     }
 
     public partial class Form1 : Form
@@ -25,8 +33,9 @@ namespace OOP
         Line line2;
         Box box1;
         Circle circle1;
+        Circle circle2;
 
-         Pixel A,B,C,D,E,O;
+        Pixel A, B, C, D, E, O;
 
         public Form1()
         {
@@ -41,17 +50,18 @@ namespace OOP
             graph = Graphics.FromImage(bmp);
             pen = new Pen(Color.Green);
 
-            A= new Pixel(100,300);
-            B= new Pixel(300,300);
-            C= new Pixel(100,100);
+            A = new Pixel(100, 300);
+            B = new Pixel(300, 300);
+            C = new Pixel(100, 100);
             D = new Pixel(300, 100);
             E = new Pixel(200, 10);
-            O= new Pixel(200,200);
+            O = new Pixel(200, 200);
 
-            line1 = new Line(C,E);
-            line2 = new Line(E,D);
-            box1 = new Box(C,B);
-            circle1= new Circle(O,100);
+            line1 = new Line(C, E);
+            line2 = new Line(E, D);
+            box1 = new Box(C, B);
+            circle1 = new Circle(O, 100);
+            circle2 = new Circle(O, A);
 
         }
 
@@ -61,6 +71,7 @@ namespace OOP
             Draw(line1);
             Draw(line2);
             Draw(circle1);
+            Draw(circle2);
             picture.Image = bmp;
         }
 

@@ -1,4 +1,6 @@
-﻿namespace OOP
+﻿using System;
+
+namespace OOP
 {
     class Circle
     {
@@ -19,6 +21,11 @@
             this.radius = radius;
             corner = new Pixel(center.x - radius, center.y - radius);
             width = height = radius * 2;
+        }
+
+        public Circle(Pixel center, Pixel point)
+            :this(center, center.distance(point))
+        {
         }
     }
 }
