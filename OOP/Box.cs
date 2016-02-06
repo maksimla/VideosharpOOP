@@ -1,29 +1,24 @@
-﻿namespace OOP
+﻿using System;
+
+namespace OOP
 {
     class Box
     {
-        public int x1, y1;
-        public int x2, y2;
+        public Pixel corner1;
+        public Pixel corner2;
         public int width, height;
 
         public Box(int x1, int y1, int x2, int y2)
+           : this(new Pixel(x1, y1), new Pixel(x2, y2))
         {
-            this.x1 = x1;
-            this.y1 = y1;
-            this.x2 = x2;
-            this.y2 = y2;
-            width = x2 - x1;
-            height = y2 - y1;
         }
 
         public Box(Pixel lu, Pixel rd)
         {
-            x1 = lu.x;
-            y1 = lu.y;
-            x2 = rd.x;
-            y2 = rd.y;
-            width = x2 - x1;
-            height = y2 - y1;
+            corner1 = lu;
+            corner2 = rd;
+            width = Math.Abs(corner2.x - corner1.x);
+            height = Math.Abs(corner2.y - corner1.y);
         }
     }
 }

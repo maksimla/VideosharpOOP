@@ -66,17 +66,17 @@ namespace OOP
 
         private void Draw(Line line)
         {
-            graph.DrawLine(pen, line.x1, line.y1, line.x2, line.y2);
+            graph.DrawLine(pen, line.begin.x, line.begin.y, line.ended.x, line.ended.y);
         }
 
         private void Draw(Box box)
         {
-            graph.DrawRectangle(pen, box.x1, box.y1, box.width, box.height);
+            graph.DrawRectangle(pen, box.corner1.x, box.corner1.y, box.width, box.height);
         }
 
         private void Draw(Circle circle)
         {
-            graph.DrawEllipse(pen, circle.x1, circle.y1, circle.width, circle.height);
+            graph.DrawEllipse(pen, circle.corner.x, circle.corner.y, circle.width, circle.height);
         }
     }
 }
