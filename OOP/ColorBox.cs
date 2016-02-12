@@ -17,5 +17,10 @@ namespace OOP
         {
             pen = new Pen(color, 2);
         }
+
+        public override void Draw(Graphics graph, Pen pen)
+        {
+            graph.DrawRectangle(this.pen, corner1.x, corner1.y, width, height);
+        }
     }
 }

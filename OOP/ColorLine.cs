@@ -16,5 +16,10 @@ namespace OOP
         {
             pen = new Pen(color, 2);
         }
+
+        public override void Draw(Graphics graph, Pen pen)
+        {
+            graph.DrawLine(this.pen, begin.x, begin.y, ended.x, ended.y);
+        }
     }
 }

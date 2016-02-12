@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace OOP
 {
@@ -19,6 +20,11 @@ namespace OOP
             corner2 = rd;
             width = Math.Abs(corner2.x - corner1.x);
             height = Math.Abs(corner2.y - corner1.y);
+        }
+
+        public override void Draw(Graphics graph, Pen pen)
+        {
+            graph.DrawRectangle(pen, corner1.x, corner1.y, width, height);
         }
     }
 }

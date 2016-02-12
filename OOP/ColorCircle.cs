@@ -21,5 +21,10 @@ namespace OOP
             : this(center, center.distance(point), color)
         {
         }
+
+        public override void Draw(Graphics graph, Pen pen)
+        {
+            graph.DrawEllipse(this.pen, corner.x, corner.y, width, height);
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace OOP
+﻿using System.Drawing;
+
+namespace OOP
 {
     class Line : Shape
     {
@@ -14,6 +16,11 @@
         {
             this.begin = begin;
             this.ended = ended;
+        }
+
+        public override void Draw(Graphics graph, Pen pen)
+        {
+            graph.DrawLine(pen, begin.x, begin.y, ended.x, ended.y);
         }
     }
 }
