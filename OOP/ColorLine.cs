@@ -2,10 +2,8 @@
 
 namespace OOP
 {
-    internal class ColorLine
+    internal class ColorLine : Line
     {
-        public Pixel begin;
-        public Pixel ended;
         public Pen pen;
 
         public ColorLine(int x1, int y1, int x2, int y2, Color color)
@@ -14,10 +12,9 @@ namespace OOP
         }
 
         public ColorLine(Pixel begin, Pixel ended, Color color)
+            : base(begin, ended)
         {
-            this.begin = begin;
-            this.ended = ended;
-            pen = new Pen(color,2);
+            pen = new Pen(color, 2);
         }
     }
 }
