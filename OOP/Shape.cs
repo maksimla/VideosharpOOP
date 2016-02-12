@@ -1,6 +1,7 @@
 ﻿namespace OOP
 {
-    class Shape
+    public class Shape
     {
+        protected Pixel position;
     }
 }

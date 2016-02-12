@@ -114,47 +114,32 @@ namespace OOP
 
         private void Draw()
         {
-            foreach (var man in snowMan1)
-                Draw(man);
+            Draw(snowMan1);
+            Draw(snowMan2);
 
-            foreach (var man in snowMan2)
-                Draw(man);
-            
             picture.Image = bmp;
+        }
+
+        public void Draw(Shape[] shapes)
+        {
+            foreach (var shape in shapes)
+                Draw(shape);
         }
 
         private void Draw(Shape shape)
         {
             if (shape.GetType() == typeof(Line))
-            {
                 Draw((Line)shape);
-            }
-
             if (shape.GetType() == typeof(Circle))
-            {
                 Draw((Circle)shape);
-            }
-
             if (shape.GetType() == typeof(Box))
-            {
                 Draw((Box)shape);
-            }
-
             if (shape.GetType() == typeof(ColorLine))
-            {
                 Draw((ColorLine)shape);
-            }
-
             if (shape.GetType() == typeof(ColorCircle))
-            {
                 Draw((ColorCircle)shape);
-            }
-
             if (shape.GetType() == typeof(ColorBox))
-            {
                 Draw((ColorBox)shape);
-            }
-
         }
 
         private void Draw(Line line)
