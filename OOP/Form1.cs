@@ -29,21 +29,8 @@ namespace OOP
         Graphics graph;
         Pen pen;
 
-        Circle circle1;
-        Circle circle2;
-        Circle circle3;
-        Line line1;
-        Line line2;
-        Box box1;
-        Box box2;
-
-        ColorCircle circle21;
-        ColorCircle circle22;
-        ColorCircle circle23;
-        ColorLine line21;
-        ColorLine line22;
-        ColorBox box21;
-        ColorBox box22;
+        Shape[] snowMan1;
+        Shape[] snowMan2;
 
         Pixel A, B, C, D, E, F, G, H, I, J, K, L, M;
 
@@ -80,15 +67,17 @@ namespace OOP
             L = new Pixel(242, 492);
             M = new Pixel(283, 534);
 
-            circle1 = new Circle(A, D);
-            circle2 = new Circle(B, D);
-            circle3 = new Circle(C, E);
+            snowMan1 = new Shape[7];
 
-            line1 = new Line(F, G);
-            line2 = new Line(H, I);
+            snowMan1[0] = new Circle(A, D);
+            snowMan1[1] = new Circle(B, D);
+            snowMan1[2] = new Circle(C, E);
 
-            box1 = new Box(J, K);
-            box2 = new Box(L, M);
+            snowMan1[3] = new Line(F, G);
+            snowMan1[4] = new Line(H, I);
+
+            snowMan1[5] = new Box(J, K);
+            snowMan1[6] = new Box(L, M);
 
         }
 
@@ -109,36 +98,63 @@ namespace OOP
             L = new Pixel(delta + 242, 492);
             M = new Pixel(delta + 283, 534);
 
-            circle21 = new ColorCircle(A, D, Color.DarkOrchid);
-            circle22 = new ColorCircle(B, D, Color.Aquamarine);
-            circle23 = new ColorCircle(C, E, Color.BlanchedAlmond);
+            snowMan2 = new Shape[7];
 
-            line21 = new ColorLine(F, G, Color.BlueViolet);
-            line22 = new ColorLine(H, I, Color.DarkGoldenrod);
+            snowMan2[0] = new ColorCircle(A, D, Color.DarkOrchid);
+            snowMan2[1] = new ColorCircle(B, D, Color.Aquamarine);
+            snowMan2[2] = new ColorCircle(C, E, Color.BlanchedAlmond);
 
-            box21 = new ColorBox(J, K, Color.DeepSkyBlue);
-            box22 = new ColorBox(L, M, Color.Chocolate);
+            snowMan2[3] = new ColorLine(F, G, Color.BlueViolet);
+            snowMan2[4] = new ColorLine(H, I, Color.DarkGoldenrod);
+
+            snowMan2[5] = new ColorBox(J, K, Color.DeepSkyBlue);
+            snowMan2[6] = new ColorBox(L, M, Color.Chocolate);
 
         }
 
         private void Draw()
         {
-            Draw(circle1);
-            Draw(circle2);
-            Draw(circle3);
-            Draw(line1);
-            Draw(line2);
-            Draw(box1);
-            Draw(box2);
+            foreach (var man in snowMan1)
+                Draw(man);
 
-            Draw(circle21);
-            Draw(circle22);
-            Draw(circle23);
-            Draw(line21);
-            Draw(line22);
-            Draw(box21);
-            Draw(box22);
+            foreach (var man in snowMan2)
+                Draw(man);
+            
             picture.Image = bmp;
+        }
+
+        private void Draw(Shape shape)
+        {
+            if (shape.GetType() == typeof(Line))
+            {
+                Draw((Line)shape);
+            }
+
+            if (shape.GetType() == typeof(Circle))
+            {
+                Draw((Circle)shape);
+            }
+
+            if (shape.GetType() == typeof(Box))
+            {
+                Draw((Box)shape);
+            }
+
+            if (shape.GetType() == typeof(ColorLine))
+            {
+                Draw((ColorLine)shape);
+            }
+
+            if (shape.GetType() == typeof(ColorCircle))
+            {
+                Draw((ColorCircle)shape);
+            }
+
+            if (shape.GetType() == typeof(ColorBox))
+            {
+                Draw((ColorBox)shape);
+            }
+
         }
 
         private void Draw(Line line)

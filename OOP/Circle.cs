@@ -1,6 +1,6 @@
 ﻿namespace OOP
 {
-    class Circle
+    class Circle : Shape
     {
         public Pixel center;
         public int radius;
@@ -22,7 +22,7 @@
         }
 
         public Circle(Pixel center, Pixel point)
-            :this(center, center.distance(point))
+            : this(center, center.distance(point))
         {
         }
     }
