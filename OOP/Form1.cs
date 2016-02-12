@@ -70,8 +70,14 @@ namespace OOP
             snowMan1 = new Shape[7];
 
             snowMan1[0] = new Circle(A, D);
+            ((Circle)snowMan1[0]).SetGraphics(graph);
+            ((Circle)snowMan1[0]).SetPen(pen);
             snowMan1[1] = new Circle(B, D);
+            ((Circle)snowMan1[1]).SetGraphics(graph);
+            ((Circle)snowMan1[1]).SetPen(pen);
             snowMan1[2] = new Circle(C, E);
+            ((Circle)snowMan1[2]).SetGraphics(graph);
+            ((Circle)snowMan1[2]).SetPen(pen);
 
             snowMan1[3] = new Line(F, G);
             snowMan1[4] = new Line(H, I);
@@ -131,7 +137,7 @@ namespace OOP
             if (shape.GetType() == typeof(Line))
                 Draw((Line)shape);
             if (shape.GetType() == typeof(Circle))
-                Draw((Circle)shape);
+                ((Circle)shape).Draw();
             if (shape.GetType() == typeof(Box))
                 Draw((Box)shape);
             if (shape.GetType() == typeof(ColorLine))
@@ -160,11 +166,6 @@ namespace OOP
         private void Draw(ColorBox box)
         {
             graph.DrawRectangle(box.pen, box.corner1.x, box.corner1.y, box.width, box.height);
-        }
-
-        private void Draw(Circle circle)
-        {
-            graph.DrawEllipse(pen, circle.corner.x, circle.corner.y, circle.width, circle.height);
         }
 
         private void Draw(ColorCircle circle)
