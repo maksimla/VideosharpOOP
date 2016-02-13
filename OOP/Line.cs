@@ -15,5 +15,10 @@
             this.begin = begin;
             this.ended = ended;
         }
+
+        public void Draw()
+        {
+            graph.DrawLine(pen, begin.x, begin.y, ended.x, ended.y);
+        }
     }
 }
