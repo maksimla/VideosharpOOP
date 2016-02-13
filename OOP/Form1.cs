@@ -39,13 +39,8 @@ namespace OOP
 
         private void buttonMoveMe_Click(object sender, EventArgs e)
         {
-            Pixel p=new Pixel(150,200);
-            circle.Move(p);
-            circle.Draw();
-            line.Move(p);
-            line.Draw();
-            box.Move(p);
-            box.Draw();
+            snowMan1.Move(new Pixel(100, 100));
+            snowMan1.Draw();
 
 
             picture.Image = bmp;
@@ -55,10 +50,10 @@ namespace OOP
         {
             InitializeComponent();
             Init();
-            //InitSnowMan1();
+            InitSnowMan1();
             //InitSnowMan2();
-            Demo();
-            // Draw();
+            // Demo();
+            Draw();
         }
 
         private void Init()
@@ -151,7 +146,7 @@ namespace OOP
         private void Draw()
         {
             snowMan1.Draw();
-            snowMan2.Draw();
+            // snowMan2.Draw();
 
             picture.Image = bmp;
         }

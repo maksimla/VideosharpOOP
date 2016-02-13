@@ -24,7 +24,12 @@ namespace OOP
 
         public override void Draw()
         {
-           shapes.ForEach(shape=>shape.Draw());
+            foreach (Shape shape in shapes)
+            {
+                shape.Move(position);
+                shape.Draw();
+            }
+
         }
     }
 }
