@@ -28,7 +28,7 @@ namespace OOP
         {
         }
 
-        public void Draw()
+        public override void Draw()
         {
             graph.DrawEllipse(pen, corner.x, corner.y, width, height);
         }

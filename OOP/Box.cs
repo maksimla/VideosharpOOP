@@ -21,7 +21,7 @@ namespace OOP
             height = Math.Abs(corner2.y - corner1.y);
         }
 
-        public void Draw()
+        public override void Draw()
         {
             graph.DrawRectangle(pen, corner1.x, corner1.y, width, height);
         }

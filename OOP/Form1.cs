@@ -127,23 +127,7 @@ namespace OOP
         public void Draw(Shape[] shapes)
         {
             foreach (var shape in shapes)
-                Draw(shape);
-        }
-
-        private void Draw(Shape shape)
-        {
-            if (shape.GetType() == typeof(Line))
-                ((Line)shape).Draw();
-            if (shape.GetType() == typeof(Circle))
-                ((Circle)shape).Draw();
-            if (shape.GetType() == typeof(Box))
-                ((Box)shape).Draw();
-            if (shape.GetType() == typeof(ColorLine))
-                ((ColorLine)shape).Draw();
-            if (shape.GetType() == typeof(ColorCircle))
-                ((ColorCircle)shape).Draw();
-            if (shape.GetType() == typeof(ColorBox))
-                ((ColorBox)shape).Draw();
+                shape.Draw();
         }
     }
 }
