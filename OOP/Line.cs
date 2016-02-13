@@ -18,7 +18,8 @@
 
         public override void Draw()
         {
-            graph.DrawLine(pen, begin.x, begin.y, ended.x, ended.y);
+            graph.DrawLine(pen, begin.x+position.x, begin.y+position.y, 
+                                ended.x+position.x, ended.y+position.y);
         }
     }
 }

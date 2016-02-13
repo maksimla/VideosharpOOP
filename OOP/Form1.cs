@@ -29,6 +29,8 @@ namespace OOP
         Graphics graph;
 
         Circle circle;
+        Box box;
+        Line line;
 
         Sprite snowMan1;
         Sprite snowMan2;
@@ -37,8 +39,15 @@ namespace OOP
 
         private void buttonMoveMe_Click(object sender, EventArgs e)
         {
-            circle.Move(new Pixel(150,200));
+            Pixel p=new Pixel(150,200);
+            circle.Move(p);
             circle.Draw();
+            line.Move(p);
+            line.Draw();
+            box.Move(p);
+            box.Draw();
+
+
             picture.Image = bmp;
         }
 
@@ -60,11 +69,23 @@ namespace OOP
 
         private void Demo()
         {
+            Pixel p = new Pixel(100, 100);
             A = new Pixel(0, 0);
             circle = new Circle(A, 20);
-            circle.Move(new Pixel(100,100));
             circle.SetGraphics(graph);
+            circle.Move(p);
             circle.Draw();
+
+            line = new Line(0, 20, 0, 100);
+            line.SetGraphics(graph);
+            line.Move(p);
+            line.Draw();
+
+            box = new Box(-20, -20, 20, -40);
+            box.SetGraphics(graph);
+            box.Move(p);
+            box.Draw();
+
             picture.Image = bmp;
         }
 

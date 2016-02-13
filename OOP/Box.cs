@@ -23,7 +23,7 @@ namespace OOP
 
         public override void Draw()
         {
-            graph.DrawRectangle(pen, corner1.x, corner1.y, width, height);
+            graph.DrawRectangle(pen, corner1.x+position.x, corner1.y+position.y, width, height);
         }
     }
 }
