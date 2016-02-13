@@ -16,7 +16,7 @@
             this.ended = ended;
         }
 
-        public void Draw()
+        public override void Draw()
         {
             graph.DrawLine(pen, begin.x, begin.y, ended.x, ended.y);
         }

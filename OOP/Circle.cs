@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace OOP
+﻿namespace OOP
 {
     class Circle : Shape
     {
@@ -28,7 +26,7 @@ namespace OOP
         {
         }
 
-        public void Draw()
+        public override void Draw()
         {
             graph.DrawEllipse(pen, corner.x, corner.y, width, height);
         }

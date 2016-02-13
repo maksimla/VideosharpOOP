@@ -2,7 +2,7 @@
 
 namespace OOP
 {
-    public class Shape
+    public abstract class Shape
     {
         protected Pixel position;
         protected Graphics graph;
@@ -22,5 +22,7 @@ namespace OOP
         {
             this.pen = pen;
         }
+
+        public abstract void Draw();
     }
 }
