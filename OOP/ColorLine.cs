@@ -19,7 +19,7 @@ namespace OOP
 
         public override void Draw(Graphics graph, Pen pen)
         {
-            graph.DrawLine(this.pen, begin.x, begin.y, ended.x, ended.y);
+            base.Draw(graph, this.pen);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace OOP
     {
         protected Pixel position;
 
+
         public virtual void Draw(Graphics graph,Pen pen)
         {
         }
