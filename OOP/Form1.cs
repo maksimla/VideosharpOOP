@@ -28,24 +28,44 @@ namespace OOP
         Bitmap bmp;
         Graphics graph;
 
+        Circle circle;
+
         Sprite snowMan1;
         Sprite snowMan2;
 
         Pixel A, B, C, D, E, F, G, H, I, J, K, L, M;
 
+        private void buttonMoveMe_Click(object sender, EventArgs e)
+        {
+            circle.Move(new Pixel(150,200));
+            circle.Draw();
+            picture.Image = bmp;
+        }
+
         public Form1()
         {
             InitializeComponent();
             Init();
-            InitSnowMan1();
-            InitSnowMan2();
-            Draw();
+            //InitSnowMan1();
+            //InitSnowMan2();
+            Demo();
+            // Draw();
         }
 
         private void Init()
         {
             bmp = new Bitmap(picture.Width, picture.Height);
             graph = Graphics.FromImage(bmp);
+        }
+
+        private void Demo()
+        {
+            A = new Pixel(0, 0);
+            circle = new Circle(A, 20);
+            circle.Move(new Pixel(100,100));
+            circle.SetGraphics(graph);
+            circle.Draw();
+            picture.Image = bmp;
         }
 
         private void InitSnowMan1()

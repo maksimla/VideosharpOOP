@@ -28,7 +28,7 @@
 
         public override void Draw()
         {
-            graph.DrawEllipse(pen, corner.x, corner.y, width, height);
+            graph.DrawEllipse(pen, corner.x+position.x, corner.y+position.y, width, height);
         }
     }
 }

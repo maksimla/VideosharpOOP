@@ -24,5 +24,11 @@ namespace OOP
         }
 
         public abstract void Draw();
+
+        public void Move(Pixel position)
+        {
+            this.position = position;
+
+        }
     }
 }
