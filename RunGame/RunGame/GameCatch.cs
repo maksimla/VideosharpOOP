@@ -30,14 +30,7 @@ namespace RunGame
         {
             if (Leader == null)
                 return;
-            foreach (IPlayer g in Gamers)
-            {
-                if (Leader.IsCatch(g))
-                {
-                    SetNewLeader(g);
-                    break;
-                }
-            }
+            SetNewLeader(Gamers.FirstOrDefault(a => Leader.IsCatch(a)));
         }
 
         public void RunAll()
@@ -48,11 +41,9 @@ namespace RunGame
 
         private void SetNewLeader(IPlayer gamer)
         {
-            if (Leader != null)
-                Leader.NoGole();
+            Leader?.NoGole();
             Leader = gamer;
-            if (Leader != null)
-                Leader.Gole();
+            Leader?.Gole();
         }
     }
 }
