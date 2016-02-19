@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace RunGame
 {
@@ -10,6 +11,7 @@ namespace RunGame
         public GameCatch()
         {
             Gamers = new List<IPlayer>();
+            Leader = null;
         }
 
         public void AddGamer(IPlayer gamer)
@@ -26,9 +28,16 @@ namespace RunGame
 
         private void FindNewLeader()
         {
-            foreach (var g in Gamers)
+            if (Leader == null)
+                return;
+            foreach (IPlayer g in Gamers)
+            {
                 if (Leader.IsCatch(g))
+                {
                     SetNewLeader(g);
+                    break;
+                }
+            }
         }
 
         public void RunAll()
@@ -39,9 +48,11 @@ namespace RunGame
 
         private void SetNewLeader(IPlayer gamer)
         {
-            Leader.NoGole();
+            if (Leader != null)
+                Leader.NoGole();
             Leader = gamer;
-            Leader.Gole();
+            if (Leader != null)
+                Leader.Gole();
         }
     }
 }
