@@ -31,8 +31,8 @@ namespace RunGame
             graphics.DrawEllipse(new Pen(circle.Color),
                                  circle.Center.X - circle.Radius,
                                  circle.Center.Y - circle.Radius,
-                                 circle.Center.X + circle.Radius,
-                                 circle.Center.Y + circle.Radius
+                                 2 * circle.Radius,
+                                 2 * circle.Radius
                                  );
         }
 
