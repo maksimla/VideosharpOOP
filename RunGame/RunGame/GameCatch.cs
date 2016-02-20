@@ -31,11 +31,12 @@ namespace RunGame
                 return;
             foreach (IPlayer g in Gamers)
             {
-                if (Leader.IsCatch(g))
-                {
-                    SetNewLeader(g);
-                    break;
-                }
+                if (!Leader.Equals(g))
+                    if (Leader.IsCatch(g))
+                    {
+                        SetNewLeader(g);
+                        break;
+                    }
             }
         }
 

@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGame));
             this.picture = new System.Windows.Forms.PictureBox();
             this.buttonAddGamer = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +56,10 @@
             this.buttonAddGamer.UseVisualStyleBackColor = true;
             this.buttonAddGamer.Click += new System.EventHandler(this.buttonAddGamer_Click);
             // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // FormGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -76,6 +82,7 @@
 
         private System.Windows.Forms.PictureBox picture;
         private System.Windows.Forms.Button buttonAddGamer;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
