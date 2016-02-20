@@ -18,7 +18,7 @@ namespace RunGame
         public void AddGamer(IPlayer gamer)
         {
             Gamers.Add(gamer);
-            // SetNewVirus(gamer);
+            SetNewVirus(gamer);
         }
 
         public void Step()
@@ -29,31 +29,37 @@ namespace RunGame
 
         private void RunAll()
         {
-            Gamers.ForEach(g => g.Run());
+            foreach (var g in Gamers.Where(g => !_virused.Contains(g)))
+                g.Run();
         }
 
-        public void SetNewVirus(IPlayer gamer)
+        private void SetNewVirus(IPlayer gamer)
         {
-            if (_blue)
-                gamer.Gole();
-            else
-                gamer.NoGole();
+            _virused = new List<IPlayer>();
+
+            Gamers.ForEach(g => g.NoGole());
+            gamer.Gole();
             _virused.Add(gamer);
         }
 
         private void FindNewVirus()
         {
-            foreach (var g in from g in Gamers.Where(g => !_virused.Contains(g)) from v in _virused.ToList().Where(v => v.IsCatch(g)) select g)
-            {
-                SetNewVirus(g);
-            }
-
-            if (Gamers.Count != _virused.Count + 1)
-                return;
-            var virus = Gamers.FirstOrDefault(g => !_virused.Contains(g));
-            _virused = new List<IPlayer>();
-            _blue = !_blue;
-            SetNewVirus(virus);
+            foreach (IPlayer g in Gamers)
+                if (!_virused.Contains(g))
+                {
+                    if (_virused.Count == Gamers.Count - 1)
+                    {
+                        SetNewVirus(g);
+                        break;
+                    }
+                    foreach (var virus in _virused)
+                        if (g.IsCatch(virus))
+                        {
+                            _virused.Add(g);
+                            g.Gole();
+                            break;
+                        }
+                }
         }
     }
 }

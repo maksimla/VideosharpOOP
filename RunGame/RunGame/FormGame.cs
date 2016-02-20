@@ -19,7 +19,6 @@ namespace RunGame
         {
             for (int i = 0; i < 5; i++)
                 _game.AddGamer(Arena.NewCircle());
-            _game.SetNewVirus(_game.Gamers[0]);
         }
 
         private void timer_Tick(object sender, System.EventArgs e)
