@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace RunGame
 {
@@ -36,31 +37,24 @@ namespace RunGame
                 leaderSkipSteps--;
                 return;
             }
-            foreach (IPlayer g in Gamers)
+
+            foreach (var g in Gamers.Where(g => !Leader.Equals(g)).Where(g => Leader.IsCatch(g)))
             {
-                if (!Leader.Equals(g))
-                    if (Leader.IsCatch(g))
-                    {
-                        SetNewLeader(g);
-                        break;
-                    }
+                SetNewLeader(g);
+                break;
             }
         }
 
         public void RunAll()
         {
-            foreach (var g in Gamers)
-                //if (!Leader.Equals(g) || leaderSkipSteps == 0)
-                g.Run();
+            Gamers.ForEach(g => g.Run());
         }
 
         private void SetNewLeader(IPlayer gamer)
         {
-            if (Leader != null)
-                Leader.NoGole();
+            Leader?.NoGole();
             Leader = gamer;
-            if (Leader != null)
-                Leader.Gole();
+            Leader?.Gole();
             leaderSkipSteps = MaxSkipSteps;
         }
     }
