@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 
 namespace RunGame
 {
-    class GameCatch
+    public class GameCatch
     {
         public List<IPlayer> Gamers { get; private set; }
-        IPlayer Leader;
+        IPlayer _Leader;
 
         public GameCatch()
         {
             Gamers = new List<IPlayer>();
-            Leader = null;
+            _Leader = null;
         }
 
         public void AddGamer(IPlayer gamer)
@@ -27,31 +29,31 @@ namespace RunGame
 
         private void FindNewLeader()
         {
-            if (Leader == null)
+            if (_Leader == null)
                 return;
-            foreach (IPlayer g in Gamers)
+            SetNewLeader(Gamers.FirstOrDefault(g=>_Leader.IsCatch(g)));
+            /* foreach (IPlayer g in Gamers)
             {
-                if (Leader.IsCatch(g))
+                if (_Leader.IsCatch(g))
                 {
                     SetNewLeader(g);
                     break;
                 }
-            }
+            }*/
         }
 
         public void RunAll()
         {
-            foreach (var g in Gamers)
-                g.Run();
+            Gamers.ForEach(g=>g.Run());
+            /*foreach (var g in Gamers)
+                g.Run();*/
         }
 
         private void SetNewLeader(IPlayer gamer)
         {
-            if (Leader != null)
-                Leader.NoGole();
-            Leader = gamer;
-            if (Leader != null)
-                Leader.Gole();
+            _Leader?.NoGole();
+            _Leader = gamer;
+            _Leader?.Gole();
         }
     }
 }
