@@ -6,6 +6,8 @@ namespace RunGame
     {
         public List<IPlayer> Gamers { get; private set; }
         IPlayer Leader;
+        private int leaderSkipSteps;
+        private static int MaxSkipSteps = 10;
 
         public GameCatch()
         {
@@ -29,6 +31,11 @@ namespace RunGame
         {
             if (Leader == null)
                 return;
+            if (leaderSkipSteps > 0)
+            {
+                leaderSkipSteps--;
+                return;
+            }
             foreach (IPlayer g in Gamers)
             {
                 if (!Leader.Equals(g))
@@ -43,6 +50,7 @@ namespace RunGame
         public void RunAll()
         {
             foreach (var g in Gamers)
+                //if (!Leader.Equals(g) || leaderSkipSteps == 0)
                 g.Run();
         }
 
@@ -53,6 +61,7 @@ namespace RunGame
             Leader = gamer;
             if (Leader != null)
                 Leader.Gole();
+            leaderSkipSteps = MaxSkipSteps;
         }
     }
 }
