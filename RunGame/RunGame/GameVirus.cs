@@ -3,11 +3,12 @@ using System.Linq;
 
 namespace RunGame
 {
-    class GameVirus
+    internal class GameVirus : IGame
     {
-        public List<IPlayer> Gamers { get; private set; }
+        public List<IPlayer> Gamers { get; }
+        public bool FreezeAll { get; set; }
+        public bool FreezeBed { get; set; }
         private List<IPlayer> _virused;
-        private bool _blue = true;
 
         public GameVirus()
         {
@@ -29,9 +30,13 @@ namespace RunGame
 
         private void RunAll()
         {
-            Gamers.ForEach(g => g.Run());
-            //foreach (var g in Gamers.Where(g => !_virused.Contains(g)))
-            //    g.Run();
+            if (FreezeAll)
+                return;
+            if (FreezeBed)
+                foreach (var g in Gamers.Where(g => !_virused.Contains(g)))
+                    g.Run();
+            else
+                Gamers.ForEach(g => g.Run());
         }
 
         private void SetNewVirus(IPlayer gamer)
@@ -45,22 +50,6 @@ namespace RunGame
 
         private void FindNewVirus()
         {
-            /*foreach (IPlayer g in Gamers)
-                if (!_virused.Contains(g))
-                {
-                    if (_virused.Count == Gamers.Count - 1)
-                    {
-                        SetNewVirus(g);
-                        break;
-                    }
-                    /*foreach (var virus in _virused)
-                        if (g.IsCatch(virus))
-                        {
-                            _virused.Add(g);
-                            g.Gole();
-                            break;
-                        }
-                }*/
             foreach (var g in Gamers.Where(g => !_virused.Contains(g)))
             {
                 if (_virused.Count == Gamers.Count - 1)

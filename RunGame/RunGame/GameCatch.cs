@@ -3,17 +3,19 @@ using System.Linq;
 
 namespace RunGame
 {
-    class GameCatch
+    internal class GameCatch : IGame
     {
-        public List<IPlayer> Gamers { get; private set; }
-        IPlayer Leader;
-        private int leaderSkipSteps;
-        private static int MaxSkipSteps = 10;
+        public List<IPlayer> Gamers { get; }
+        public bool FreezeAll { get; set; }
+        public bool FreezeBed { get; set; }
+        private IPlayer _leader;
+        private int _leaderSkipSteps;
+        private const int MaxSkipSteps = 10;
 
         public GameCatch()
         {
             Gamers = new List<IPlayer>();
-            Leader = null;
+            _leader = null;
         }
 
         public void AddGamer(IPlayer gamer)
@@ -30,15 +32,15 @@ namespace RunGame
 
         private void FindNewLeader()
         {
-            if (Leader == null)
+            if (_leader == null)
                 return;
-            if (leaderSkipSteps > 0)
+            if (_leaderSkipSteps > 0)
             {
-                leaderSkipSteps--;
+                _leaderSkipSteps--;
                 return;
             }
 
-            foreach (var g in Gamers.Where(g => !Leader.Equals(g)).Where(g => Leader.IsCatch(g)))
+            foreach (var g in Gamers.Where(g => !_leader.Equals(g)).Where(g => _leader.IsCatch(g)))
             {
                 SetNewLeader(g);
                 break;
@@ -47,15 +49,21 @@ namespace RunGame
 
         public void RunAll()
         {
-            Gamers.ForEach(g => g.Run());
+            if (FreezeAll)
+                return;
+            if (FreezeBed)
+                foreach (var g in Gamers.Where(g => !_leader.Equals(g)))
+                    g.Run();
+            else
+                Gamers.ForEach(g => g.Run());
         }
 
         private void SetNewLeader(IPlayer gamer)
         {
-            Leader?.NoGole();
-            Leader = gamer;
-            Leader?.Gole();
-            leaderSkipSteps = MaxSkipSteps;
+            _leader?.NoGole();
+            _leader = gamer;
+            _leader?.Gole();
+            _leaderSkipSteps = MaxSkipSteps;
         }
     }
 }

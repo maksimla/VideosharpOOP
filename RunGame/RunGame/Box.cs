@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace RunGame
 {
-    class Box : IPlayer
+    internal class Box : IPlayer
     {
-        public Rectangle box { get; private set; }
+        public Rectangle Rectangle { get; private set; }
         public Color Color { get; private set; }
         private int _sx;
         private int _sy;
+        private readonly Crosser _crosser;
 
         public Box(int x, int y, int w, int h)
             : this(x, y, w, h, 0, 0)
@@ -22,10 +17,11 @@ namespace RunGame
 
         public Box(int x, int y, int w, int h, int sx, int sy)
         {
-            box = new Rectangle(x, y, w, h);
+            Rectangle = new Rectangle(x, y, w, h);
             Color = Color.Green;
             _sx = sx;
             _sy = sy;
+            _crosser = new Crosser();
         }
 
         public void Run()
@@ -35,13 +31,13 @@ namespace RunGame
 
         private void Move()
         {
-            int x = box.X + _sx;
-            int y = box.Y + _sy;
-            if (x < 0 || x > Arena.Range.Width - box.Width)
+            int x = Rectangle.X + _sx;
+            int y = Rectangle.Y + _sy;
+            if (x < 0 || x > Arena.Range.Width - Rectangle.Width)
                 _sx = -_sx;
-            if (y < 0 || y > Arena.Range.Height - box.Height)
+            if (y < 0 || y > Arena.Range.Height - Rectangle.Height)
                 _sy = -_sy;
-            box = new Rectangle(box.X + _sx, box.Y + _sy, box.Width, box.Height);
+            Rectangle = new Rectangle(Rectangle.X + _sx, Rectangle.Y + _sy, Rectangle.Width, Rectangle.Height);
         }
 
         public void Gole()
@@ -56,18 +52,7 @@ namespace RunGame
 
         public bool IsCatch(IPlayer that)
         {
-            if (that.GetType() != typeof(Box))
-                return false;
-            return Cross(box, ((Box)that).box);
-            // return Rectangle.Intersect(box, ((Box)that).box) != Rectangle.Empty;
-        }
-
-        private bool Cross(Rectangle box1, Rectangle box2)
-        {
-            return (box1.Left <= box2.Right &&
-                    box1.Right >= box2.Left &&
-                    box1.Bottom >= box2.Top &&
-                    box1.Top <= box2.Bottom);
+            return _crosser.Cross(this, that);
         }
     }
 }

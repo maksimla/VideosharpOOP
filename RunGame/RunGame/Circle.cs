@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace RunGame
 {
@@ -8,8 +7,9 @@ namespace RunGame
         public Point Center { get; private set; }
         public int Radius { get; private set; }
         public Color Color { get; private set; }
-        private int sx;
-        private int sy;
+        private int _sx;
+        private int _sy;
+        private readonly Crosser _crosser;
 
         public Circle(int x, int y, int r)
                : this(new Point(x, y), r, 0, 0)
@@ -25,19 +25,20 @@ namespace RunGame
             Center = p;
             Radius = r;
             Color = Color.Blue;
-            this.sx = sx;
-            this.sy = sy;
+            _sx = sx;
+            _sy = sy;
+            _crosser = new Crosser();
         }
 
         public void Run()
         {
-            int x = Center.X + sx;
-            int y = Center.Y + sy;
+            int x = Center.X + _sx;
+            int y = Center.Y + _sy;
             if (x < Radius || x > Arena.Range.Width - Radius)
-                sx = -sx;
+                _sx = -_sx;
             if (y < Radius || y > Arena.Range.Height - Radius)
-                sy = -sy;
-            Center = new Point(Center.X + sx, Center.Y + sy);
+                _sy = -_sy;
+            Center = new Point(Center.X + _sx, Center.Y + _sy);
 
         }
 
@@ -51,21 +52,9 @@ namespace RunGame
             Color = Color.Blue;
         }
 
-        public bool IsCatch(IPlayer obj)
+        public bool IsCatch(IPlayer that)
         {
-            if (obj.GetType() != typeof(Circle))
-                return false;
-            return Cross(this, (Circle)obj);
-        }
-
-        private bool Cross(Circle c1, Circle c2)
-        {
-            return distance(c1.Center, c2.Center) <= c1.Radius + c2.Radius;
-        }
-
-        private int distance(Point p, Point q)
-        {
-            return Convert.ToInt32(Math.Sqrt(Math.Pow(p.X - q.X, 2) + Math.Pow(p.Y - q.Y, 2)));
+            return _crosser.Cross(this, that);
         }
     }
 }

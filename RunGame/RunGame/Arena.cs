@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace RunGame
 {
-    class Arena
+    internal class Arena
     {
         public static Size Range { get; private set; }
         private static Random _random = new Random();
@@ -38,7 +38,7 @@ namespace RunGame
 
         public void Show(IPlayer obj)
         {
-            if(obj.GetType()==typeof(Circle))
+            if (obj.GetType() == typeof(Circle))
                 Show((Circle)obj);
             if (obj.GetType() == typeof(Box))
                 Show((Box)obj);
@@ -46,7 +46,7 @@ namespace RunGame
         public void Show(Box box)
         {
             Pen pen = new Pen(box.Color);
-            graphics.DrawRectangle(pen, box.box);
+            graphics.DrawRectangle(pen, box.Rectangle);
         }
 
         public void Refresh()

@@ -52,6 +52,7 @@
     <Compile Include="Arena.cs" />
     <Compile Include="Box.cs" />
     <Compile Include="Circle.cs" />
+    <Compile Include="Crosser.cs" />
     <Compile Include="FormGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +61,7 @@
     </Compile>
     <Compile Include="GameCatch.cs" />
     <Compile Include="GameVirus.cs" />
+    <Compile Include="IGame.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
