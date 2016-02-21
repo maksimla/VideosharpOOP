@@ -17,8 +17,10 @@ namespace RunGame
 
         private void buttonAddGamer_Click(object sender, System.EventArgs e)
         {
+            //for (int i = 0; i < 5; i++)
+            //    _game.AddGamer(Arena.NewCircle());
             for (int i = 0; i < 5; i++)
-                _game.AddGamer(Arena.NewCircle());
+                _game.AddGamer(Arena.NewBox());
         }
 
         private void timer_Tick(object sender, System.EventArgs e)
@@ -26,8 +28,10 @@ namespace RunGame
             _game.Step();
             _arena.Clear();
 
-            foreach (Circle circle in _game.Gamers)
-                _arena.Show(circle);
+            foreach (Box obj in _game.Gamers)
+                _arena.Show(obj);
+            //foreach (Circle obj in _game.Gamers)
+            //    _arena.Show(obj);
             _arena.Refresh();
         }
     }

@@ -29,8 +29,9 @@ namespace RunGame
 
         private void RunAll()
         {
-            foreach (var g in Gamers.Where(g => !_virused.Contains(g)))
-                g.Run();
+            Gamers.ForEach(g => g.Run());
+            //foreach (var g in Gamers.Where(g => !_virused.Contains(g)))
+            //    g.Run();
         }
 
         private void SetNewVirus(IPlayer gamer)
@@ -44,7 +45,7 @@ namespace RunGame
 
         private void FindNewVirus()
         {
-            foreach (IPlayer g in Gamers)
+            /*foreach (IPlayer g in Gamers)
                 if (!_virused.Contains(g))
                 {
                     if (_virused.Count == Gamers.Count - 1)
@@ -52,14 +53,26 @@ namespace RunGame
                         SetNewVirus(g);
                         break;
                     }
-                    foreach (var virus in _virused)
+                    /*foreach (var virus in _virused)
                         if (g.IsCatch(virus))
                         {
                             _virused.Add(g);
                             g.Gole();
                             break;
                         }
+                }*/
+            foreach (var g in Gamers.Where(g => !_virused.Contains(g)))
+            {
+                if (_virused.Count == Gamers.Count - 1)
+                {
+                    SetNewVirus(g);
+                    break;
                 }
+
+                if (!_virused.Any(v => g.IsCatch(v))) continue;
+                _virused.Add(g);
+                g.Gole();
+            }
         }
     }
 }

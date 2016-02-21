@@ -36,6 +36,12 @@ namespace RunGame
                                  );
         }
 
+        public void Show(Box box)
+        {
+            Pen pen = new Pen(box.Color);
+            graphics.DrawRectangle(pen, box.box);
+        }
+
         public void Refresh()
         {
             _picture.Refresh();
@@ -48,7 +54,18 @@ namespace RunGame
             int y = _random.Next(r, Range.Height - r);
             int sx = _random.Next(-5, 6);
             int sy = _random.Next(-5, 6);
-            return new Circle(x, y, r,sx,sy);
+            return new Circle(x, y, r, sx, sy);
+        }
+
+        public static Box NewBox()
+        {
+            int w = _random.Next(8, 25);
+            int h = _random.Next(8, 25);
+            int x = _random.Next(0, Range.Width - w);
+            int y = _random.Next(0, Range.Height - h);
+            int sx = _random.Next(-5, 6);
+            int sy = _random.Next(-5, 6);
+            return new Box(x, y, w, h, sx, sy);
         }
     }
 }
