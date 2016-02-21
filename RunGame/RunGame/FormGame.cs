@@ -62,6 +62,8 @@ namespace RunGame
                 _game = new GameVirus();
                 checkStopBed.Text = "Стоп Вирус";
             }
+            checkStopAll.Checked = false;
+            checkStopBed.Checked = false;
             timer.Enabled = true;
         }
 
