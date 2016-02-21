@@ -56,7 +56,18 @@ namespace RunGame
 
         public bool IsCatch(IPlayer that)
         {
-            return Rectangle.Intersect(box, ((Box)that).box) != Rectangle.Empty;
+            if (that.GetType() != typeof(Box))
+                return false;
+            return Cross(box, ((Box)that).box);
+            // return Rectangle.Intersect(box, ((Box)that).box) != Rectangle.Empty;
+        }
+
+        private bool Cross(Rectangle box1, Rectangle box2)
+        {
+            return (box1.Left <= box2.Right &&
+                    box1.Right >= box2.Left &&
+                    box1.Bottom >= box2.Top &&
+                    box1.Top <= box2.Bottom);
         }
     }
 }

@@ -36,6 +36,13 @@ namespace RunGame
                                  );
         }
 
+        public void Show(IPlayer obj)
+        {
+            if(obj.GetType()==typeof(Circle))
+                Show((Circle)obj);
+            if (obj.GetType() == typeof(Box))
+                Show((Box)obj);
+        }
         public void Show(Box box)
         {
             Pen pen = new Pen(box.Color);
